@@ -1,7 +1,19 @@
 use std::io::{Read, Write};
-use std::net::{TcpListener};
+use std::net::TcpStream;
 
 fn main() {
-    let listener = TcpListener::bind("127.0.0.1:8080").expect("Failed to bind to address");
-    println!("Server listening on 127.0.0.1:8080!");
+    match TcpStream::connect("127.0.0.1:8080") {
+        Ok(mut stream) => {
+            println!("Succesfully connected to the server!");
+
+            let message_to_server = "Hello from client";
+            stream.write_all(message_to_server.as_bytes()).expect("An error occurred while sending data to the server");
+            
+            let mut buffer = [0; 1024];
+            stream.read(&mut buffer).expect("An error occurred while getting data from the server");
+        }
+        Err(e) => {
+            println!("An error occurred while connecting to the server: {}", e);
+        }
+    }
 }

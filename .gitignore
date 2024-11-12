@@ -50,3 +50,17 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+*.idea
+
+.DS_Store
+
+debug/
+target/
+
+Cargo.lock
+
+**/*.rs.bk
+
+*.pdb
+
