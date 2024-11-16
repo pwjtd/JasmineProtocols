@@ -64,3 +64,5 @@ Cargo.lock
 
 *.pdb
 
+tcp-c/tcp-client/main
+tcp-c/tcp-server/main
